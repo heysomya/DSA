@@ -57,14 +57,30 @@ class Solution3:
             
         return dp[0]
 
+class Solution4:
+    def frogJump(self, heights):
+        n = len(heights)
+        prev2 = 0
+        prev =  abs(heights[n-1] - heights[n-2])
+        
+        i = n-3
+        while i>=0:
+            dist1 = prev + abs(heights[i+1] - heights[i])
+            dist2 = prev2 + abs(heights[i+2] - heights[i])
+            curr = min(dist1, dist2)
+            prev2 = prev
+            prev = curr
+            i-=1
+
+        return prev
+
 
 def main():
-    s = Solution3()
-    # heights = [2, 1, 3, 5, 4]
-    # 2
-    heights = [7, 5, 1, 2, 6]
-    # 9
-    res = s.frogJump(heights)
-    print(res)
+    s = Solution4()
+    heightsArr = [[2, 1, 3, 5, 4], [7, 5, 1, 2, 6]] 
+
+    for heights in heightsArr:
+        res = s.frogJump(heights)
+        print(res)
 
 main()
