@@ -57,6 +57,8 @@ class Solution3:
             
         return dp[0]
 
+
+# Optimal - Tabulation, No extra space
 class Solution4:
     def frogJump(self, heights):
         n = len(heights)
