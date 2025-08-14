@@ -65,10 +65,10 @@ class Solution4:
         n = len(nums)
         if n==1: return nums[0]
 
-        prev2 = nums[0]
-        prev = max(nums[0], nums[1])
+        prev2 = 0
+        prev = nums[0]
 
-        for idx in range(2, n):
+        for idx in range(1, n):
             pick = nums[idx] + prev2
             notPick = prev
             curr = max(pick, notPick)
