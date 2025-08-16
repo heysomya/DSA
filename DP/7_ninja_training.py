@@ -47,27 +47,53 @@ from typing import *
 
 
 # Tabulation
+# def ninjaTraining(n: int, points: List[List[int]]) -> int:
+#     # Write your code here.
+#     n = len(points)
+
+#     dp = [[-1 for _ in range(4)] for _ in range(n)]
+
+#     dp[0][0] = max(points[0][1], points[0][2])
+#     dp[0][1] = max(points[0][0], points[0][2])
+#     dp[0][2] = max(points[0][0], points[0][1])
+#     dp[0][3] = max(points[0][0], points[0][1], points[0][2])
+
+#     for day in range(1, n):
+#         for last in range(4):
+#             maxi = -1
+#             for task in range(3):
+#                 if task != last:
+#                     pick = points[day][task] + dp[day-1][task]
+#                     maxi = max(maxi, pick)
+#             dp[day][last] = maxi
+
+#     return dp[n-1][3]
+
+
+# Optimal - Constant extra space
 def ninjaTraining(n: int, points: List[List[int]]) -> int:
     # Write your code here.
     n = len(points)
 
-    dp = [[-1 for _ in range(4)] for _ in range(n)]
+    prev = [0 for _ in range(4)]
 
-    dp[0][0] = max(points[0][1], points[0][2])
-    dp[0][1] = max(points[0][0], points[0][2])
-    dp[0][2] = max(points[0][0], points[0][1])
-    dp[0][3] = max(points[0][0], points[0][1], points[0][2])
+    prev[0] = max(points[0][1], points[0][2])
+    prev[1] = max(points[0][0], points[0][2])
+    prev[2] = max(points[0][0], points[0][1])
+    prev[3] = max(points[0][0], points[0][1], points[0][2])
 
     for day in range(1, n):
+        temp = [0 for _ in range(4)]
         for last in range(4):
             maxi = -1
             for task in range(3):
                 if task != last:
-                    pick = points[day][task] + dp[day-1][task]
+                    pick = points[day][task] + prev[task]
                     maxi = max(maxi, pick)
-            dp[day][last] = maxi
+            temp[last] = maxi
+        prev = temp
 
-    return dp[n-1][3]
+    return prev[3]
 
 def main():
     n = 3
