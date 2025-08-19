@@ -52,7 +52,7 @@ class Solution3:
         return dp[-1][-1]
 
 
-# Tabulation - No extra space
+# Tabulation - O(n) extra space
 class Solution4:
     def uniquePaths(self, m: int, n: int) -> int:
         prev = [0 for _ in range(n)]
