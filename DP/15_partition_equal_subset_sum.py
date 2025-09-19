@@ -1,3 +1,5 @@
+from typing import List
+
 class Solution:
     def subsetSumEqualsTarget(self, n, k, arr):
         prev = [False for _ in range(k+1)]

@@ -1,3 +1,5 @@
+from typing import List
+
 # Brute Force
 class Solution:
     def solve(self, idx, target, coins):
